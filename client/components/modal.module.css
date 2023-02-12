@@ -1,0 +1,93 @@
+.modal {
+  min-height: 50vh;
+  padding: 0 5%;
+  /* background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/862cc171-8df5-418c-886f-2aaf767ae159/2108183d-fee2-43b6-9232-8cf942f0af4b/KR-ko-20230130-popsignuptwoweeks-perspective_alpha_website_large.jpg"); */
+}
+.bg {
+  background: rgba(0, 0, 0, 0.4);
+
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0,
+    transparent 60%,
+    rgba(0, 0, 0, 0.8)
+  );
+}
+.h1,
+.h2 {
+  margin: 1rem 0;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.searchbar {
+  height: 3rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.searchinput {
+  height: 3rem;
+  width: min(80vw, 30rem);
+  padding: 0.5rem;
+  font-size: 1rem;
+
+  background-color: transparent;
+  border: none;
+  border: 1px solid #eee;
+  color: white;
+}
+
+.searchinput:focus {
+  outline: 2px solid var(--point-color);
+}
+.searchbarcontainer {
+  width: max-content;
+  position: relative;
+}
+
+.searchinputlabel {
+  color: gray;
+  position: absolute;
+  top: 50%;
+  left: 0.5rem;
+  font-size: 1rem;
+  transform: translateY(-50%);
+  transition: all 0.5s ease;
+}
+
+.searchbarcontainer:focus-within > .searchinputlabel {
+  top: 0.5rem;
+
+  font-size: 0.3rem;
+}
+.searchinputlabeltop {
+  top: 0.5rem;
+
+  font-size: 0.3rem;
+}
+
+.searchbutton {
+  cursor: pointer;
+  color: #ddd;
+  font-weight: 900;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--point-color);
+  height: 3rem;
+  padding: 0 1rem;
+  min-width: max-content;
+}
+
+.searchbutton:active {
+  opacity: 0.8;
+}
+
+.modal_search {
+  max-width: 950px;
+  padding: 17rem 0 15rem;
+  margin: auto;
+}
