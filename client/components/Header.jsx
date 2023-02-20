@@ -3,21 +3,25 @@ import React, { useEffect, useState } from "react";
 import style from "./header.module.css";
 import Image from "next/image";
 import { Web3Auth } from "@web3auth/modal";
-import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from "@web3auth/base";
+import { CHAIN_NAMESPACES } from "@web3auth/base";
 import RPC from "@/utils/web3RPC.ts";
+import { useRecoilState } from "recoil";
+import { web3AuthState } from "@/recoil/atoms";
+import Link from "next/link";
 
 const clientId =
   "BOBp7QQm8zcJlzX9L3WVh7J3Tvk4Hzx816FL4dLzqnhSpBs-R4X5Za6jfiPeg15cLpLZK2CYJWCOBRXlcTO1WyE";
 
 function Header(props) {
   const [showModal, setShowModal] = useState(false);
-  const [web3auth, setWeb3auth] = useState(null);
+  const [web3auth, setWeb3auth] = useRecoilState(web3AuthState);
   const [provider, setProvider] = useState(null);
+  const [posts, setPosts] = useState(null);
 
   useEffect(() => {
     const init = async () => {
       try {
-        const web3auth = new Web3Auth({
+        const web3_auth = new Web3Auth({
           clientId:
             "BOBp7QQm8zcJlzX9L3WVh7J3Tvk4Hzx816FL4dLzqnhSpBs-R4X5Za6jfiPeg15cLpLZK2CYJWCOBRXlcTO1WyE",
           web3AuthNetwork: "testnet", // mainnet, aqua, celeste, cyan or testnet
@@ -32,11 +36,11 @@ function Header(props) {
             tickerName: "Ethereum",
           },
         });
+        console.log("web3_auth", web3_auth);
 
-        setWeb3auth(web3auth);
-
-        await web3auth.initModal();
-        setProvider(web3auth.provider);
+        setWeb3auth(() => {
+          return web3_auth;
+        });
       } catch (error) {
         console.error(error);
       }
@@ -44,6 +48,20 @@ function Header(props) {
 
     init();
   }, []);
+
+  useEffect(() => {
+    const init_web3auth = async () => {
+      if (
+        Object.keys(web3auth).length !== 0 &&
+        web3auth.constructor !== Object
+      ) {
+        if (provider) return;
+        await web3auth.initModal();
+        setProvider(web3auth.provider);
+      }
+    };
+    init_web3auth();
+  }, [web3auth]);
 
   const login = async () => {
     if (!web3auth) {
@@ -141,11 +159,14 @@ function Header(props) {
   };
 
   const loggedInView = (
-    <>
+    <div className={style.loginview}>
+      <Link href={"/mypage"}>
+        <div>My Page</div>
+      </Link>
       <button onClick={logout} className={style.loginbutton}>
         로그아웃
       </button>
-      <div className="flex-container">
+      {/* <div className="flex-container">
         <div>
           <button onClick={getUserInfo} className="card">
             Get User Info
@@ -191,12 +212,12 @@ function Header(props) {
             Log Out
           </button>
         </div>
-      </div>
+      </div> */}
 
-      <div id="console" style={{ whiteSpace: "pre-line" }}>
+      {/* <div id="console" style={{ whiteSpace: "pre-line" }}>
         <p style={{ whiteSpace: "pre-line" }}>Logged in Successfully!</p>
-      </div>
-    </>
+      </div> */}
+    </div>
   );
 
   const unloggedInView = (
@@ -208,7 +229,9 @@ function Header(props) {
   return (
     <>
       <div className={style.header}>
-        <div className={style.homebutton}>DCR</div>
+        <Link href="/">
+          <div className={style.homebutton}>DCR</div>
+        </Link>
         {provider ? loggedInView : unloggedInView}
       </div>
       {showModal && (

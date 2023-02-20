@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  padding: 1rem;
+  padding: 1rem 8%;
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -9,6 +9,37 @@
 
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.loginview > a {
+  font-weight: 700;
+  padding: 1rem 2rem;
+}
+.loginview > a > div {
+  font-size: large;
+  position: relative;
+}
+
+.loginview > a > div::before {
+  position: absolute;
+  left: -5px;
+  bottom: -10px;
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: #0abab5;
+  transition: all 0.5s ease;
+}
+.loginview > a:hover > div::before {
+  width: calc(100% + 10px);
+}
+
+.loginview {
+  color: #0abab5;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 }
 
 .homebutton {

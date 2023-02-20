@@ -1,10 +1,44 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./modal.module.css";
+import useDebounce from "@/hooks/useDebounce";
+
+import searchMoviesApi from "@/modules/api";
+import Image from "next/image";
+import Link from "next/link";
+import { movieDataState } from "@/recoil/atoms";
+import { useRecoilState } from "recoil";
+import axios from "axios";
 
 function Modal(props) {
   const [searchTitle, setSearchTitle] = useState("");
+  const [movies, setMovies] = useRecoilState(movieDataState);
+  const [noResult, setNoResult] = useState(false);
+
+  const debounceValue = useDebounce(searchTitle, 300);
+
+  const getMovies = async () => {};
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const res = await searchMoviesApi({
+        query: debounceValue,
+        api_key: "2a9e67d2d5f6c1616769c3d72a95da3c",
+      });
+      console.log(res);
+      if (res.data?.results) {
+        setMovies(res.data.results);
+        if (res.data.results.length === 0) {
+          setNoResult(true);
+        } else {
+          setNoResult(false);
+        }
+      }
+    };
+    if (debounceValue) getPosts();
+  }, [debounceValue]);
 
   const handleInputChange = (e) => {
+    console.log(e.target.value);
     setSearchTitle(e.target.value);
   };
 
@@ -35,6 +69,40 @@ function Modal(props) {
               >
                 영상제작물의 제목을 입력하세요.
               </label>
+              <div
+                className={`${style.searchcontent} ${
+                  searchTitle !== "" ? "" : "hide"
+                }`}
+              >
+                {noResult && (
+                  <div className={style.nocontent}>
+                    <span>일치하는 영상이 없습니다.</span>
+                  </div>
+                )}
+                {movies?.map((e, i) => {
+                  // let title = e.title.replace(/<[^>]*>?/g, "");
+
+                  return (
+                    <Link key={e.Link} href={"/movie?title=" + i}>
+                      <div className={style.searchitem}>
+                        <img
+                          alt=""
+                          src={
+                            "https://image.tmdb.org/t/p/w300" + e.poster_path
+                          }
+                          width="50"
+                          height="50"
+                        ></img>
+                        <div
+                        // dangerouslySetInnerHTML={{ __html: e.title }}
+                        >
+                          {e.original_title}
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
             </span>
             <button className={style.searchbutton}>검색하기</button>
           </div>

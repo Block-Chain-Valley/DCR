@@ -1,13 +1,19 @@
 .card {
-  padding: 70px 45px;
+  padding: 70px 8%;
   margin: 8px 0;
+  min-height: 30rem;
   background-color: black;
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
 .card > div {
   flex-basis: 50%;
+}
+.card > div:first-child {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .description > h1,
