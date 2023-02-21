@@ -19,7 +19,7 @@ import {
 // const mainKey = EthrDID.createKeyPair();
 const chainNameOrId = 0x5; // goerli
 // const RPC_URL = process.env.RPC_URL;
-const RPC_URL = "https://goerli.infura.io/v3/e622d5b0025f45c3ab950f34b5524305";
+const RPC_URL = "https://goerli.infura.io/v3/"//+ API_KEY;
 console.log(RPC_URL);
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
@@ -36,10 +36,10 @@ const resolver = new Resolver(getResolver(providerConfig));
 
 // Issuer DID
 // const ISSUER_ADDRESS = process.env.ISSUER_ADDRESS;
-const ISSUER_ADDRESS = "0x804e489f9B7e770a4A90741BC3Ab687d64255e39";
+const ISSUER_ADDRESS = ""// issuer 주소;
 // const ISSUER_PK = process.env.PRIVATE_KEY;
 const ISSUER_PK =
-  "5aac0b0cd6ac068035afcf4a2f78d37af1af3276df58befd15fb15cc0243778e";
+  "" // issuer private key;
 const ISSUER_Did = new EthrDID({
   identifier: ISSUER_ADDRESS,
   privateKey: ISSUER_PK,
