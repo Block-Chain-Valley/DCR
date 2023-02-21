@@ -1,0 +1,146 @@
+.header {
+  position: fixed;
+  padding: 1rem 8%;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 4rem;
+
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.loginview > a {
+  font-weight: 700;
+  padding: 1rem 2rem;
+}
+.loginview > a > div {
+  font-size: large;
+  position: relative;
+}
+
+.loginview > a > div::before {
+  position: absolute;
+  left: -5px;
+  bottom: -10px;
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: #0abab5;
+  transition: all 0.5s ease;
+}
+.loginview > a:hover > div::before {
+  width: calc(100% + 10px);
+}
+
+.loginview {
+  color: #0abab5;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.homebutton {
+  font-family: "Nanum Myeongjo", serif;
+  cursor: pointer;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #0abab5;
+}
+
+.loginbutton:active {
+  opacity: 0.8;
+}
+.loginbutton {
+  color: white;
+  border: none;
+  border-radius: 3px;
+
+  padding: 0 1.5rem;
+  background-color: #0abab5;
+  line-height: 1rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.loginmodal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+
+  display: grid;
+  place-items: center;
+}
+
+.loginmodalcontainer {
+  border-radius: 5px;
+  background-color: black;
+  border: 1px solid #eee;
+  position: relative;
+  padding: 2rem;
+  width: min(500px, 100%);
+  height: min(500px, 80%);
+}
+.closebutton {
+  position: absolute;
+
+  right: 30px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.googlelogin {
+  width: 100%;
+  height: 100%;
+}
+
+.googlelogin > div {
+  height: calc(100% - 6rem);
+  display: grid;
+  place-items: center;
+}
+
+.googlelogin > h1 {
+  font-family: "Nanum Myeongjo", serif;
+
+  font-size: 2rem;
+  color: var(--point-color);
+  margin-top: 2rem;
+  text-align: center;
+}
+.googlelogin > h3 {
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 0.5px solid #eee;
+  padding-block: 1rem;
+}
+
+.googleloginbutton {
+  cursor: pointer;
+  transform: translateY(-50%);
+  width: 80%;
+  height: 3rem;
+
+  border-radius: 9999px;
+
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.googleloginbutton:active {
+  opacity: 0.8;
+}

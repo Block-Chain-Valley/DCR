@@ -1,0 +1,33 @@
+.card {
+  padding: 70px 8%;
+  margin: 8px 0;
+  min-height: 30rem;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card > div {
+  flex-basis: 50%;
+}
+.card > div:first-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.description > h1,
+.description > h3 {
+  text-align: center;
+}
+
+.description > h3 {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 959px) {
+  .card {
+    flex-direction: column;
+    gap: 3rem;
+  }
+}

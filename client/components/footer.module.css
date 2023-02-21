@@ -1,0 +1,38 @@
+.footer {
+  margin-top: 0.5rem;
+  background-color: black;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footercontainer {
+  padding: 1.25rem 8%;
+
+  max-width: calc(100% - 4rem);
+}
+
+.query {
+  padding: 0.75rem 0;
+}
+
+.content {
+  /* margin-top: 0.75rem; */
+  padding-block: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright > span {
+  color: #0abab5;
+  font-size: large;
+  font-weight: 700;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+}
+
+.logo > svg {
+  cursor: pointer;
+}
