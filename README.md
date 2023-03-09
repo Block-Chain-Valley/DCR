@@ -1,5 +1,3 @@
 # DCR
 
 Decentralized Copyright
-
-# JWbranch
